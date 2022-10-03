@@ -254,13 +254,13 @@ T List<T>::get(uint index) const
     throw IndexOutOfBounds(); // Lanzar excepción
   }
 
-  for (int i = 0; i < index; i++)
+  for (int i = 0; i < index - 1; i++)
   {
     p = p->next; // Asignar la referencia del siguiente nodo al nodo actual
   }
 
-  aux = p->value; // Asignar el valor del nodo obtenido a la variable aux
-  return aux;     // Regresar el valor del nodo
+  // aux = p->value; // Asignar el valor del nodo obtenido a la variable aux
+  return p->value; // Regresar el valor del nodo
 
   // Complejidad
   // O(n)
@@ -331,12 +331,12 @@ void List<T>::insert_at(T val, uint index)
     throw IndexOutOfBounds(); // Lanzar excepción
   }
 
-  p = head;       // Asignar la referencia de head al nodo p
-  if (index == 0) // Revisar si el índice es igual a cero
+  p = this->head;       // Asignar la referencia de head al nodo p
+  q = new Node<T>(val); // Crear un nuevo nodo con el valor val
+  if (index == 0)       // Revisar si el índice es igual a cero
   {
-    q = new Node<T>(val); // Crear un nuevo nodo con el valor val
-    head = q;             // Asigar q como el valor de head
-    q->next = p;          // Asignar al head anterior como el atributo next del nuevo head
+    head = q;    // Asigar q como el valor de head
+    q->next = p; // Asignar al head anterior como el atributo next del nuevo head
   }
   else
   {
@@ -344,9 +344,8 @@ void List<T>::insert_at(T val, uint index)
     {
       p = p->next; // Asignar la referencia del siguiente nodo al nodo actual
     }
-    q = new Node<T>(val); // Crear un nuevo nodo con el valor val
-    q->next = p->next;    // Asignar al atributo next del nuevo nodo el valor del atributo next del nodo actual
-    p->next = q;          // Asignar al atributo next del nodo actual la referencia al nuevo nodo
+    q->next = p->next; // Asignar al atributo next del nuevo nodo el valor del atributo next del nodo actual
+    p->next = q;       // Asignar al atributo next del nodo actual la referencia al nuevo nodo
   }
   size++; // Incrementar el tamaño de la lista
 
