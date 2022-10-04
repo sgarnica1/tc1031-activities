@@ -296,7 +296,11 @@ T DoubleLinkedList<T>::after(T val) const
   return val;
 
   // Complejidad
+<<<<<<< HEAD
   // O(1)
+=======
+  // O(n)
+>>>>>>> 40f13cf3998dc6bbb56d8f5cb7b59e8c2d615111
 }
 
 // =================================================================
