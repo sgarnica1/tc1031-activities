@@ -245,23 +245,23 @@ T DoubleLinkedList<T>::last() const
 template <class T>
 T DoubleLinkedList<T>::before(T val) const
 {
-  Node<T> *currentNode;
-  currentNode = head;
+  Node<T> *currentNode; // Crear nueva variable de tipo Node
+  currentNode = head;   // Asignar el head de la lista a la variable currentNode
 
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < size; i++) // Recorrer toda la lista
   {
-    if (currentNode->value == val)
+    if (currentNode->value == val) // Verificar que el valor sea encontrado
     {
-      if (currentNode->previous == NULL)
+      if (currentNode->previous == NULL) // Verificar si el Nodo es el head
       {
         throw NoSuchElement();
       }
-      return currentNode->previous->value;
+      return currentNode->previous->value; // Retornar el valor previo al buscado
     }
-    currentNode = currentNode->next;
+    currentNode = currentNode->next; // Moverse al siguiente nodo
   }
 
-  throw NoSuchElement();
+  throw NoSuchElement(); // En caso que no se encuentre el valor, lanzar una excepción
   return val;
 
   // Complejidad
@@ -276,31 +276,27 @@ T DoubleLinkedList<T>::before(T val) const
 template <class T>
 T DoubleLinkedList<T>::after(T val) const
 {
-  Node<T> *currentNode;
-  currentNode = head;
+  Node<T> *currentNode; // Crear nueva variable de tipo Node
+  currentNode = head;   // Asignar el head de la lista a la variable currentNode
 
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < size; i++) // Recorrer toda la lista
   {
-    if (currentNode->value == val)
+    if (currentNode->value == val) // Verificar que el valor sea encontrado
     {
-      if (currentNode->next == NULL)
+      if (currentNode->next == NULL) // Verificar si el Nodo es el último de la lista
       {
         throw NoSuchElement();
       }
-      return currentNode->next->value;
+      return currentNode->next->value; // Retornar el valor siguiente al buscado
     }
-    currentNode = currentNode->next;
+    currentNode = currentNode->next; // Moverse al siguiente nodo
   }
 
-  throw NoSuchElement();
+  throw NoSuchElement(); // En caso que no se encuentre el valor, lanzar una excepción
   return val;
 
   // Complejidad
-<<<<<<< HEAD
   // O(1)
-=======
-  // O(n)
->>>>>>> 40f13cf3998dc6bbb56d8f5cb7b59e8c2d615111
 }
 
 // =================================================================
@@ -370,36 +366,36 @@ void DoubleLinkedList<T>::insert_before(T lookingFor, T newVal)
 {
   if (empty())
   {
-    push_front(newVal);
+    push_front(newVal); // Revisar si la lista está vacía
     return;
   }
 
-  Node<T> *currentNode, *previousNode, *newNode;
-  currentNode = head;
+  Node<T> *currentNode, *previousNode, *newNode; // Crear nuevas variables de tipo Nodo
+  currentNode = head;                            // Crear nuevas variables de tipo Nodo
 
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < size; i++) // Recorrer toda la lista
   {
-    if (currentNode->value == lookingFor)
+    if (currentNode->value == lookingFor) // Verificar que el valor sea encontrado
     {
-      newNode = new Node<T>(newVal);
+      newNode = new Node<T>(newVal); // Asiganr el valor newVal a un Nodo
 
-      if (currentNode->previous == NULL)
+      if (currentNode->previous == NULL) // Revisar si estamos en el head de la lista
       {
-        newNode->next = currentNode;
-        currentNode->previous = newNode;
-        head = newNode;
-        size++;
+        newNode->next = currentNode;     // Asignar el nodo actual al nodo siguiente del nuevo nodo
+        currentNode->previous = newNode; // Asignar el nodo anterior del nodo actual al nuevo nodo
+        head = newNode;                  // Aisgnar el newNode como el nuevo head de la lista
+        size++;                          // Aumentar en 1 el tamaño de la lista
         return;
       }
 
-      previousNode = currentNode->previous;
-
+      previousNode = currentNode->previous; // Guardar el nodo anterior al nodo actual
+      // Asignaciones: previousNode <=> newNode <=> currentNode
       previousNode->next = newNode;
       currentNode->previous = newNode;
       newNode->previous = previousNode;
       newNode->next = currentNode;
 
-      size++;
+      size++; // Aumentar en 1 el tamaño de la lista
       return;
     }
     currentNode = currentNode->next;
@@ -420,35 +416,35 @@ void DoubleLinkedList<T>::insert_after(T lookingFor, T newVal)
 {
   if (empty())
   {
-    push_front(newVal);
+    push_front(newVal); // Revisar si la lista está vacía
     return;
   }
 
-  Node<T> *currentNode, *nextNode, *newNode;
-  currentNode = head;
+  Node<T> *currentNode, *nextNode, *newNode; // Crear nuevas variables de tipo Nodo
+  currentNode = head;                        // Crear nuevas variables de tipo Nodo
 
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < size; i++) // Recorrer toda la lista
   {
-    if (currentNode->value == lookingFor)
+    if (currentNode->value == lookingFor) // Verificar que el valor sea encontrado
     {
-      newNode = new Node<T>(newVal);
+      newNode = new Node<T>(newVal); // Asiganr el valor newVal a un Nodo
 
-      if (currentNode->next == NULL)
+      if (currentNode->next == NULL) // Revisar si estamos en el último nodo de la lista
       {
-        newNode->previous = currentNode;
-        currentNode->next = newNode;
-        size++;
+        newNode->previous = currentNode; // Asignar el nodo actual al nodo previo del nuevo nodo
+        currentNode->next = newNode;     // Asignar el nodo siguiente del nodo actual al nuevo nodo
+        size++;                          // Aumentar en 1 el tamaño de la lista
         return;
       }
 
-      nextNode = currentNode->next;
-
+      nextNode = currentNode->next; // Guardar el nodo siguiente al nodo actual
+      // Asignaciones: currentNode <=> newNode <=> nextNode
       nextNode->previous = newNode;
       currentNode->next = newNode;
       newNode->previous = currentNode;
       newNode->next = nextNode;
 
-      size++;
+      size++; // Aumentar en 1 el tamaño de la lista
       return;
     }
     currentNode = currentNode->next;
