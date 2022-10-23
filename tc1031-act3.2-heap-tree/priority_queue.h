@@ -79,6 +79,7 @@ int PriorityQueue<T>::rightIndex(int i) const
 // Pushes value to queue. Adds new value and positions it at the right place (Max Heap Tree)
 // @param int value to add
 // Return void
+// Complexity O(n)
 // =================================================================
 template <class T>
 void PriorityQueue<T>::push(int value)
@@ -104,6 +105,7 @@ void PriorityQueue<T>::push(int value)
 // Pops value from queue. Delete value with highest priority and positions new Top at the right place (Max Heap Tree)
 // @param none
 // Return void
+// Complexity O(n)
 // =================================================================
 template <class T>
 void PriorityQueue<T>::pop()
@@ -135,6 +137,7 @@ void PriorityQueue<T>::pop()
 // Gets top. Value with highest priority (Max Heap Tree)
 // @param none
 // Return int value with highest priority
+// Complexity O(1)
 // =================================================================
 template <class T>
 int PriorityQueue<T>::top() const
@@ -150,6 +153,7 @@ int PriorityQueue<T>::top() const
 // Cheks if priority queue is empty or not.
 // @param none
 // Returns bool True if size < 0;
+// Complexity O(1)
 // =================================================================
 template <class T>
 bool PriorityQueue<T>::empty() const
@@ -161,6 +165,7 @@ bool PriorityQueue<T>::empty() const
 // Gets size of priority queue
 // @param none
 // Returns int queue size
+// Complexity O(1)
 // =================================================================
 template <class T>
 int PriorityQueue<T>::getSize() const
