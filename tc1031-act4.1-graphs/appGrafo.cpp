@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "UMatrixGraph.h"
+#include "UListGraph.h"
 #include <vector>
 #include <set>
 
@@ -41,9 +42,41 @@ int main()
   std::vector<int> dfs = graph.DFS(start, &graph);
 
   // Print DFS
-  std::cout << "DFS from " << start << ": ";
+  std::cout << "DFS desde  " << start << ": ";
   for (auto it = dfs.begin(); it != dfs.end(); ++it)
     std::cout << ' ' << *it;
+  std::cout << "\n\n------------------------\n";
+
+  // Graph Adjacent List
+  UListGraph<int> graphList(5);
+
+  // Add vertexes
+  graphList.addVertex(1);
+  graphList.addVertex(2);
+  graphList.addVertex(3);
+  graphList.addVertex(4);
+  graphList.addVertex(5);
+
+  // Add edges
+  graphList.addEdge(1, 2);
+  graphList.addEdge(1, 3);
+  graphList.addEdge(2, 3);
+  graphList.addEdge(2, 4);
+  graphList.addEdge(3, 4);
+  graphList.addEdge(3, 5);
+  graphList.addEdge(4, 5);
+
+  // Print graph
+  std::cout << graphList << std::endl;
+
+  // BFS
+  std::vector<int> bfs = graphList.BFS(start, &graphList);
+
+  // Print BFS
+  std::cout << "BFS desde  " << start << ": ";
+  for (auto it = bfs.begin(); it != dfs.end(); ++it)
+    std::cout << ' ' << *it;
+  std::cout << std::endl;
 
   return 0;
 }

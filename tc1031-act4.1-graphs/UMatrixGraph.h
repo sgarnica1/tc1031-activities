@@ -64,7 +64,8 @@ UMatrixGraph<Vertex>::UMatrixGraph(int size)
 {
   matrix = std::vector<std::vector<bool>>(size, std::vector<bool>(size, false));
   vertexes = std::vector<Vertex>(size);
-  next = 0;
+  this->size = size;
+  this->next = 0;
 }
 
 // Método para obtener los vértices
@@ -91,10 +92,12 @@ std::set<Vertex> UMatrixGraph<Vertex>::getNeighbours(Vertex vertex) const
 {
   std::set<Vertex> neighbours;
   int index = indexOf(vertex);
-  for (int i = 0; i < next; i++)
-    if (index != i && matrix[index][i])
-      neighbours.insert(vertexes[i]);
-
+  if (index != 1)
+  {
+    for (int i = 0; i < next; i++)
+      if (index != i && matrix[index][i])
+        neighbours.insert(vertexes[i]);
+  }
   return neighbours;
 }
 
@@ -140,11 +143,6 @@ void UMatrixGraph<Vertex>::addEdge(Vertex fromVertex, Vertex toVertex)
 template <class T>
 std::ostream &operator<<(std::ostream &os, const UMatrixGraph<T> &graph)
 {
-  os << "Vértices: ";
-  for (int i = 0; i < graph.vertexes.size(); i++)
-    os << graph.vertexes[i] << " ";
-  os << std::endl;
-
   os << "\nMatriz de adyacencia: " << std::endl;
   for (int i = 0; i < graph.vertexes.size(); i++)
   {
@@ -152,6 +150,11 @@ std::ostream &operator<<(std::ostream &os, const UMatrixGraph<T> &graph)
       os << graph.matrix[i][j] << " ";
     os << std::endl;
   }
+
+  os << "\nVértices: ";
+  for (int i = 0; i < graph.vertexes.size(); i++)
+    os << graph.vertexes[i] << " ";
+  os << std::endl;
 
   return os;
 }
